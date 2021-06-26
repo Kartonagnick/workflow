@@ -17,14 +17,31 @@
 <a name="v002"></a>
 [![P]][M] **Версия 0.0.2 (предварительная)**  
 --------------------------------------------
-[2021y-06m-25d][20:30:00] время коммита в мастере  
+[2021y-06m-27d][00:00:00] время коммита в мастере  
+
+|      дата     |  время   |     ветка     | статус |  
+|:-------------:|:--------:|:-------------:|:------:|  
+| 2021y-06m-26d | 23:55:00 | [#12-version] | DONE   |  
+| 2021y-06m-26d | 23:25:00 | [#12-version] | BEGIN  |  
+
+Добавлен материал на тему: "версионнирование"
+
+1) add: `docs/workflow/version`  
+     - `010-version-format.md`  
+     - `020-version-semantic.md`  
+     - `030-version-workspace.md`  
+
+2) upd: `README.md`  
+3) upd: `docs/home.md`  
+
+[#12-version]: tasks/2021y-06m-26d-0012-version.md
 
 |      дата     |  время   |       ветка      | статус |  
 |:-------------:|:--------:|:----------------:|:------:|  
 | 2021y-06m-25d | 03:30:00 | [#10-principles] | DONE   |  
 | 2021y-06m-25d | 01:00:00 | [#10-principles] | BEGIN  |  
 
-1) upd: docs/principles.md  
+1) upd: `docs/principles.md`  
      - добавлен материал на тему: "как исправлять ошибки"
 
 2) add: `docs/images`
@@ -38,11 +55,11 @@
 | 2021y-06m-24d | 23:50:00 | [#8-principles] | DONE   |  
 | 2021y-06m-24d | 23:30:00 | [#8-principles] | BEGIN  |  
 
-1) add: docs/principles.md  
+1) add: `docs/principles.md`  
      - описание фундаментальный закон разработки  
 
-2) upd: docs/home.md  
-3) upd: README.md  
+2) upd: `docs/home.md`  
+3) upd: `README.md`  
 
 [#8-principles]: tasks/2021y-06m-24d-0008-principles.md
 
@@ -58,7 +75,7 @@
 | 2021y-06m-23d | 02:30:00 | [#6-slides] | DONE   |  
 | 2021y-06m-23d | 00:35:00 | [#6-slides] | BEGIN  |  
 
-1) upd: docs/slides/1-docs  
+1) upd: `docs/slides/1-docs`  
      - add: вторая часть слайдов.  
 
 [#6-slides]: tasks/2021y-06m-23d-0006-slides.md
@@ -68,10 +85,10 @@
 | 2021y-06m-22d | 23:55:00 | [#3-slides] | DONE   |  
 | 2021y-06m-22d | 20:50:00 | [#3-slides] | BEGIN  |  
 
-1) upd: README.md  
+1) upd: `README.md`  
      - upd: project description  
 
-2) add: docs/slides/1-docs  
+2) add: `docs/slides/1-docs`  
      - add: первая часть слайдов.  
 
 [#3-slides]: tasks/2021y-06m-22d-0003-slides.md
@@ -88,17 +105,17 @@
 | 2021y-06m-19d | 02:10:00 | [#1-docs] | DONE   |  
 | 2021y-06m-19d | 01:30:00 | [#1-docs] | BEGIN  |  
 
-1) upd: .gitignore  
+1) upd: `.gitignore`  
 
-2) upd: README.md  
+2) upd: `README.md`  
      - add: project description  
 
-3) upd: LICENSE  
+3) upd: `LICENSE`  
 
-4) add: docs:  
-     - add: icons  
-     - add: tasks  
-     - add: utils  
-     - add: logo  
+4) add: `docs`:  
+     - add: `icons`  
+     - add: `tasks`  
+     - add: `utils`  
+     - add: `logo`  
 
 [#1-docs]: tasks/2021y-06m-19d-0001-docs.md
