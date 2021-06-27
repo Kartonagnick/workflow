@@ -12,6 +12,35 @@
 [2021y-06m-17d][23:15:08] Idrisov Denis R.  
 [2021y-06m-17d][23:15:08] birthday of the project  
 
+
+---------------------------------------------------
+
+<a name="v003"></a>
+[![P]][M] **Версия 0.0.3 (предварительная)**  
+--------------------------------------------
+[2021y-06m-27d][23:55:00] время коммита в мастере  
+
+|      дата     |  время   |      ветка     | статус |  
+|:-------------:|:--------:|:--------------:|:------:|  
+| 2021y-06m-27d | 23:50:00 | [#14-workflow] | DONE   |  
+| 2021y-06m-27d | 21:50:00 | [#14-workflow] | BEGIN  |  
+
+Добавлен материал на тему: "организация рабочего процесса"
+
+1) add: `docs/workflow`          003  
+     - add: `workflow.md`  
+     - add: `admin/main.md`  
+     - add: `coder/main.md`  
+     - add: `common/main.md`  
+     - add: `manager/main.md`  
+     - add: `images`  
+       - add: картинки-иллюстрации.  
+
+2) upd: `README.md`  
+3) upd: `docs/home.md`  
+
+[#14-workflow]: tasks/2021y-06m-27d-0014-workflow.md
+
 ---------------------------------------------------
 
 <a name="v002"></a>
@@ -27,9 +56,9 @@
 Добавлен материал на тему: "версионнирование"
 
 1) add: `docs/workflow/version`  
-     - `010-version-format.md`  
-     - `020-version-semantic.md`  
-     - `030-version-workspace.md`  
+     - add: `010-version-format.md`  
+     - add: `020-version-semantic.md`  
+     - add: `030-version-workspace.md`  
 
 2) upd: `README.md`  
 3) upd: `docs/home.md`  
