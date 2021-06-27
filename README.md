@@ -23,6 +23,19 @@ Description of the workflow
 
 ----------------------------------------------------------------
 
+Принципы организации рабочего процесса:  
+  1. Workflow [в общих чертах][Common].  
+  1. Workflow глазами [менеджера][Manager].  
+  2. Workflow глазами [программиста][Coder].  
+  3. Workflow глазами [администратора][Admin].  
+
+[Common]:  docs/workflow/common/main.md   "раздел для всех"
+[Manager]: docs/workflow/manager/main.md  "раздел для менеджеров"
+[Coder]:   docs/workflow/coder/main.md    "раздел для программистов"
+[Admin]:   docs/workflow/admin/main.md    "раздел для администраторов"
+
+----------------------------------------------------------------
+
 Пошаговые пример-иллюстрации:
   - [пример выполнения первой задачи docs](docs/slides/1-docs/main.md)  
 
