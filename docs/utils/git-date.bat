@@ -12,12 +12,12 @@ rem ============================================================================
 
     @echo [GIT-DATE] run...
 
-    rem cd "%~dp0workflow"
+    cd "%~dp0workflow"
 
-    call :updLastCommit "2021-06-18 00:00:00"
+    call :updLastCommit "2021-06-28 00:01:00"
         if errorlevel 1 (goto :failed)
     
-    rem call :updAnyCommit "2021-06-16 15:30:26" "1457bdfcf672dd4f48828a533d8d6e24fa2a2400"
+    rem call :updAnyCommit "2021-06-28 00:01:00" "cf4a0da03ef9dabf30c77fe0b74af2d68755aa76"
         if errorlevel 1 (goto :failed)
 
 :success
@@ -40,6 +40,7 @@ rem ============================================================================
     )
 
     set "GIT_COMMITTER_DATE=%new_date%"
+    set "GIT_AUTHOR_DATE=%new_date%"
     git commit --amend --no-edit --date="%new_date%"
 exit /b
 
