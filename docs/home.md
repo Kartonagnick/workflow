@@ -1,10 +1,5 @@
 ﻿[![logo](logo.png)](../README.md "for users")  
 
-Description of the workflow
-===========================
-Правила организации рабочего процесса.  
-
-
 [Фундаментальный закон разработки][1-LAW-DEVELOMPENT]
 
 ----------------------------------------------------------------
@@ -20,6 +15,19 @@ Description of the workflow
     "семантическое версионирование"  
 [WV]: workflow/version/030-version-workspace.md 
     "правила версионирования принятые в workspace"  
+
+----------------------------------------------------------------
+
+Принципы организации рабочего процесса:  
+  1. Workflow [в общих чертах][Common].  
+  1. Workflow глазами [менеджера][Manager].  
+  2. Workflow глазами [программиста][Coder].  
+  3. Workflow глазами [администратора][Admin].  
+
+[Common]:  workflow/common/main.md   "раздел для всех"
+[Manager]: workflow/manager/main.md  "раздел для менеджеров"
+[Coder]:   workflow/coder/main.md    "раздел для программистов"
+[Admin]:   workflow/admin/main.md    "раздел для администраторов"
 
 ----------------------------------------------------------------
 
