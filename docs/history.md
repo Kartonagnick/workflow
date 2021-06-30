@@ -15,7 +15,7 @@
 ---------------------------------------------------
 
 <a name="v005"></a>
-[![P]][M] **Версия 0.0.5 (предварительная)**  
+[![S]][M] **Версия 0.0.5 (предварительная)**  
 --------------------------------------------
 [2021y-06m-30d][23:35:00] время коммита в мастере  
 
@@ -27,12 +27,12 @@
 1) upd: README.md  
 2) upd: docs/home.md  
 
-3) add: `docs/utils/table.md`               001 PRE  
-     - add: `docs/utils/docs/git-date.md`     001 PRE  
-     - add: `docs/utils/docs/backup.md`       001 PRE  
+3) add: `docs/utils/table.md`               002  
+     - add: `docs/utils/docs/git-date.md`     002  
+     - add: `docs/utils/docs/backup.md`       001  
 
 4) upd: `docs/utils`
-     - upd: `git-date.bat` 002 PRE  
+     - upd: `git-date.bat` 002
 
 [#18-utils]: tasks/2021y-06m-30d-0018-utils.md
 
