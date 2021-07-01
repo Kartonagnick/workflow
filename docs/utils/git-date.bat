@@ -8,7 +8,7 @@ rem ============================================================================
 :main
     setlocal
 
-    @echo [GIT-DATE] run...
+    @echo [GIT-DATE] run... v0.0.2
     set "eDIR_WORK=%~dp0..\..\workflow"
     rem set "eDEBUG=ON"
 
@@ -101,16 +101,10 @@ exit /b
 rem ============================================================================
 rem ============================================================================
 
-rem :setRange
-rem     if not defined end (
-rem         set "end=%~1"
-rem     ) else (
-rem         set "beg=%~1"
-rem     )
-rem exit /b
-
 :addCommit
-    set "commits[%count%]=%~1"
+    if "%~1" == "-" (exit /b)
+    @echo [%~2][%~3]
+    set "commits[%count%]=%~2"
     set /a "count=count+1"
 exit /b
 
@@ -119,41 +113,11 @@ exit /b
     set /a "count=count+1"
 exit /b
 
-:setBegEnd
-    if "%~1" == "-" (exit /b)
-
-    @echo [%~2][%~3]    
-
-    if not defined beg (
-        set "beg=%~2"
-    ) else (
-        set "end=%~2"
-    )
-exit /b
-
 :viewBranch
-    set "beg="
-    set "end="
-
-    for /f "tokens=1,2,*" %%a in ('git cherry -v master') do (
-        call :setBegEnd "%%~a" "%%~b" "%%~c"
-        rem @echo [%%a][%%b][%%c]
-    )
-
-rem    for /f %%a in ('git rev-list --simplify-by-decoration -2 HEAD') do (
-rem        call :setRange %%a
-rem    )
-
-    @echo   [BEG] %beg%
-    @echo   [END] %end%
-    @echo.
-
     set "count=0"
-    for /f "tokens=1,2,3,*" %%a in ('git log --reverse --date^=format:"%%Y-%%m-%%d %%H:%%M:%%S" --format^="%%ad %%H %%s" %beg%~..%end%') do (
-        @echo [%%~a][%%~b][%%~c][%%~d]
-        call :addCommit "%%~c"
+    for /f "tokens=1,2,*" %%a in ('git cherry -v master') do (
+        call :addCommit "%%~a" "%%~b" "%%~c"
     )
-    @echo   [CNT] %count%
 exit /b
 
 :updDateBranch

@@ -41,7 +41,8 @@ Description of the workflow
 
 ----------------------------------------------------------------
 
+[Утилиты][UTILS] для обслуживания репозитория  
 [История](docs/history.md)  
 
-
+[UTILS]: docs/utils/table.md             "обслуживание репозитория"
 [1-LAW-DEVELOMPENT]: docs/principles.md  "Фундаментальный закон разработки"

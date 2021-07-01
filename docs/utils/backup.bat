@@ -70,7 +70,7 @@ rem ============================================================================
       @echo [ERROR] initialization failed
       goto failed
   )
-  @echo [START] ...
+  @echo [START] ... v0.0.1
 
   if not defined eSTYLE (
       call :backupDirectory 
