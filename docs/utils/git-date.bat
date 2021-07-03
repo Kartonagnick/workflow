@@ -8,7 +8,7 @@ rem ============================================================================
 :main
     setlocal
 
-    @echo [GIT-DATE] run... v0.0.3 PRE
+    @echo [GIT-DATE] run... v0.0.3
     set "eDIR_WORK=%~dp0..\..\workflow"
     rem set "eDEBUG=ON"
 
