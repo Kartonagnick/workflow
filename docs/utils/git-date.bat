@@ -8,28 +8,28 @@ rem ============================================================================
 :main
     setlocal
 
-    @echo [GIT-DATE] run... v0.0.2
+    @echo [GIT-DATE] run... v0.0.3 PRE
     set "eDIR_WORK=%~dp0..\..\workflow"
     rem set "eDEBUG=ON"
 
     call :prepare
         if errorlevel 1 (goto :failed) 
 
-    if defined eDEBUG (
-        call :viewDebug
-    ) else (
-        @echo BRANCH: %eGIT_LAST_BRANCH%
-    )
+    call :viewDebug
 
-    call :viewBranch 
+    rem call :viewBranch 
         if errorlevel 1 (goto :failed)
 
-    rem call :updDateBranch "2021-06-29 19:00:00" "2021-06-29 19:40:00"
+    call :updBranch "2021-07-01 14:30:00" "2021-07-01 14:50:00"
         if errorlevel 1 (goto :failed)
 
     rem call :updLastCommit "2021-06-30 00:05:00"
         if errorlevel 1 (goto :failed)
-    
+
+    rem call :updCommit "2021-07-01 12:35:00" "794331fdf457cf63a2bf494cf0ec93c290bb3221"
+        if errorlevel 1 (goto :failed)
+ 
+    rem deprecated   
     rem call :updAnyCommit "2021-06-29 00:25:00" "763b5bf983cde5add0e7957bb567ac20754fa4ce"
         if errorlevel 1 (goto :failed)
 
@@ -43,8 +43,14 @@ exit /b 0
     if defined eDIR_WORK (popd)
 exit /b 1
 
+rem ============================================================================
+rem ============================================================================
+
 :viewDebug
-    if not defined eDEBUG (exit /b)
+    if not defined eDEBUG (
+        @echo BRANCH: %eGIT_LAST_BRANCH%
+        exit /b
+    )
     @echo [eGIT_VERSION] ............. %eGIT_VERSION%
     @echo [eGIT_LAST_FULL_COMMIT] .... %eGIT_LAST_FULL_COMMIT%
     @echo [eGIT_LAST_SHORT_COMMIT] ... %eGIT_LAST_SHORT_COMMIT%
@@ -53,7 +59,11 @@ exit /b 1
     @echo.
 exit /b
 
+rem ============================================================================
+rem ============================================================================
+
 :prepare
+    set "eMODE_SILENT="
     set "FILTER_BRANCH_SQUELCH_WARNING=1"
     if not exist "%eDIR_WORK%\.git" (
         @echo [ERROR] .git not found
@@ -101,14 +111,58 @@ exit /b
 rem ============================================================================
 rem ============================================================================
 
+:viewTitle
+    if not defined index   (goto :viewTitleS)
+    if not defined eETALON (goto :viewTitleS)
+    set /a "cur=index+1"
+    @echo [%cur%/%eETALON%]------------------------------------[%new_date%][%id_commit%]
+    exit /b
+:viewTitleS
+    @echo ------------------------------------[%new_date%][%id_commit%]
+exit /b
+
+:updCommit
+    set "new_date=%~1"
+    set "id_commit=%~2"
+    call :viewTitle
+
+    set "eTMP_BRANCH=temp-rebasing-branch"
+    set "GIT_COMMITTER_DATE=%new_date%" 
+    set "GIT_AUTHOR_DATE=%new_date%"
+
+    set arguments=--committer-date-is-author-date ^
+        "%id_commit%" --onto "%eTMP_BRANCH%"
+
+    if defined eDEBUG (
+        set silent=
+    ) else (
+        set silent=1^>nul
+    )
+
+    git checkout -b "%eTMP_BRANCH%" "%id_commit%"      %silent%
+    git commit --amend --no-edit --date "%new_date%"   %silent%
+    git checkout "%eGIT_LAST_BRANCH%"                  %silent%
+    git rebase --autostash  %arguments%                %silent%
+    git branch -d "%eTMP_BRANCH%"                      %silent%
+    @echo --- & @echo.
+exit /b
+
+rem ============================================================================
+rem ============================================================================
+
 :addCommit
     if "%~1" == "-" (exit /b)
+    if defined eMODE_SILENT (goto :addCommitNext)
     @echo [%~2][%~3]
+:addCommitNext
     set "commits[%count%]=%~2"
     set /a "count=count+1"
 exit /b
 
 :addStamp
+    if defined eMODE_SILENT (goto :addStampNext)
+    @echo [vbs] %~1
+:addStampNext
     set "stamps[%count%]=%~1"
     set /a "count=count+1"
 exit /b
@@ -118,14 +172,17 @@ exit /b
     for /f "tokens=1,2,*" %%a in ('git cherry -v master') do (
         call :addCommit "%%~a" "%%~b" "%%~c"
     )
+    if not defined eMODE_SILENT (@echo.)
 exit /b
 
-:updDateBranch
+:updBranch
     set "beg_date=%~1"
     set "end_date=%~2"
-    @echo [updDateBranch] started...
-    @echo [updDateBranch] from: %beg_date%
-    @echo [updDateBranch]  to : %end_date%
+    @echo started...
+    @echo from: %beg_date%
+    @echo  to : %end_date%
+
+    if not defined eDEBUG (set "eMODE_SILENT=ON")
 
     call :viewBranch
     set "eETALON=%count%"
@@ -138,11 +195,13 @@ exit /b
 
     set "count=0"
     for /f "usebackq tokens=*" %%a in (`%command%`) do (
-        @echo [vbs] %%~a
         call :addStamp "%%~a"
     )
-    @echo   [CNT] %count%
+    @echo number of commits: %count%
+    @echo.
 
+
+    if not defined eDEBUG (set "eMODE_SILENT=ON")
     set "index=0"
 :loop
     call :runCommit
@@ -159,8 +218,11 @@ rem ============================================================================
 :runCommit
     call set "commit=%%commits[%index%]%%"
     call set "stamp=%%stamps[%index%]%%"
-    @echo [%index%][%commit%] - [%stamp%]
-    git filter-branch -f --env-filter "if [ $GIT_COMMIT = %commit% ]; then export GIT_AUTHOR_DATE='%stamp%'; export GIT_COMMITTER_DATE=$GIT_AUTHOR_DATE; fi"
+    rem @echo [%index%][%commit%] - [%stamp%]
+    rem @echo.
+    call :updCommit "%stamp%" "%commit%"
+    if errorlevel 1 (exit /b 1)
+
     call :viewBranch
 
     if not "%eETALON%" == "%count%" (
